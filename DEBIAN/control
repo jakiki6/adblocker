@@ -1,0 +1,9 @@
+Package: adblocker
+Version: 1.0
+Section: custom
+Priority: optional
+Architecture: all
+Depends: openssl, python3
+Essential: no
+Maintainer: Jakob Walter Kirsch <jakob.kirsch@web.de>
+Description: Runs an adblocker

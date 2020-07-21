@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+
+openssl req -new -x509 -keyout /etc/adblocker/cert.pem -out /etc/adblocker/cert.pem -days 9999999999 -nodes
+
+systemctl enable adblocker
+systemctl start adblocker

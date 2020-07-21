@@ -1,0 +1,13 @@
+[Unit]
+Description=Adblocker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/adblocker 
+ExecStop=/usr/bin/umount /etc/hosts
+ExecReload=/usr/bin/adblocker
+
+[Install]
+WantedBy=multi-user.target
