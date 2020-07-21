@@ -1,15 +1,15 @@
 #!/usr/bin/sh
 
-echo -n > /etc/adblocker/adblocker_hosts
+echo -n > /etc/adblocker/hosts
 
 umount /etc/hosts || false
 
-for source in $(cat /etc/adblocker/adblocker_sources); do
-	echo \#\#\# From $source \#\#\#>> /etc/adblocker/adblocker_hosts
-	curl $source >> /etc/adblocker/adblocker_hosts 2> /dev/null
-	echo >> /etc/adblocker/adblocker_hosts
+for source in $(cat /etc/adblocker/sources); do
+	echo \#\#\# From $source \#\#\#>> /etc/adblocker/hosts
+	curl $source >> /etc/adblocker/hosts 2> /dev/null
+	echo >> /etc/adblocker/hosts
 done
 
-cat /etc/hosts >> /etc/adblocker/adblocker_hosts
-mount --bind /etc/adblocker/adblocker_hosts /etc/hosts
+cat /etc/hosts >> /etc/adblocker/hosts
+mount --bind /etc/adblocker/hosts /etc/hosts
 adblockerd
