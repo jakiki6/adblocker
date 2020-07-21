@@ -12,5 +12,4 @@ done
 
 cat /etc/hosts >> /etc/adblocker/adblocker_hosts
 mount --bind /etc/adblocker/adblocker_hosts /etc/hosts
-adblockerd 2> /dev/null || (echo; echo Terminating ... )
-exit 0
+adblockerd
