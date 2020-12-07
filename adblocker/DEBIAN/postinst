@@ -1,6 +1,11 @@
 #!/usr/bin/sh
 
-openssl req -new -x509 -keyout /etc/adblocker/cert.pem -out /etc/adblocker/cert.pem -nodes -subj "/C=EX/ST=Example/L=Example/O=Example/OU=SSL/CN=example.com"
+#openssl req -new -x509 -keyout /etc/adblocker/cert.pem -out /etc/adblocker/cert.pem -nodes -subj "/C=EX/ST=Example/L=Example/O=Example/OU=SSL/CN=example.com"
+
+openssl genrsa -out /etc/adblocker/key.pem
+openssl req -new -key /etc/adblocker/key.pem -out /etc/adblocker/csr.pem -subj "/C=EX/ST=Example/L=Example/O=Example/OU=SSL/CN=example.com"
+openssl x509 -req -days 1 -in /etc/adblocker/csr.pem -signkey /etc/adblocker/key.pem -out /etc/adblocker/cert.pem
+rm /etc/adblocker/csr.pem
 
 systemctl enable adblocker
 systemctl start adblocker

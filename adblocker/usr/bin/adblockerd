@@ -1,10 +1,17 @@
-#!/bin/env python3
-import http.server, ssl
+#!/bin/node
+const https = require('https');
+const http = require('http')
+const fs = require('fs');
 
-server_address = ('localhost', 443)
-httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-httpd.socket = ssl.wrap_socket(httpd.socket,
-                               server_side=True,
-                               certfile='/etc/adblocker/cert.pem',
-                               ssl_version=ssl.PROTOCOL_TLS)
-httpd.serve_forever()
+const options = {
+	key: fs.readFileSync('/etc/adblocker/key.pem'),
+	cert: fs.readFileSync('/etc/adblocker/cert.pem')
+};
+
+https.createServer(options, function (req, res) {
+  res.end();
+}).listen(443);
+
+http.createServer((req, res) => {
+    res.end();
+}).listen(80);
